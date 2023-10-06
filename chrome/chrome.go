@@ -40,9 +40,9 @@ func (c Chrome) Screenshot(parent context.Context, o ScreenshotOptions) (b []byt
 	if err = chromedp.Run(ctx, chromedp.Tasks{
 		chromedp.EmulateViewport(o.Width, o.Height),
 		chromedp.Navigate(o.URL.String()),
+		chromedp.Sleep(o.Delay),
 		chromedp.Evaluate("document.querySelector('.osano-cm-dialog')?.remove()", nil),
 		chromedp.Evaluate("document.querySelector('#onetrust-consent-sdk')?.remove()", nil),
-		chromedp.Sleep(o.Delay),
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			if o.Full {
 				return chromedp.FullScreenshot(&b, 100).Do(ctx)
