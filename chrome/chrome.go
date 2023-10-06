@@ -2,7 +2,6 @@ package chrome
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/4everland/screenshot/lib"
