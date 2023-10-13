@@ -58,7 +58,7 @@ func (c Chrome) Screenshot(parent context.Context, o ScreenshotOptions) (b []byt
 }
 
 func (c Chrome) RawHtml(parent context.Context, o NewTabOptions) (b string, err error) {
-	timeoutCtx, cancel := context.WithTimeout(parent, o.EndTime.Sub(time.Now()))
+	timeoutCtx, cancel := context.WithTimeout(parent, time.Until(o.EndTime.Add(o.Delay)))
 	defer cancel()
 
 	ctx, cancel := chromedp.NewContext(timeoutCtx)
@@ -66,7 +66,7 @@ func (c Chrome) RawHtml(parent context.Context, o NewTabOptions) (b string, err 
 
 	if err = chromedp.Run(ctx, chromedp.Tasks{
 		chromedp.Navigate(o.URL.String()),
-		chromedp.Sleep(o.Delay * time.Millisecond),
+		chromedp.Sleep(o.Delay),
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			node, err := dom.GetDocument().Do(ctx)
 			if err != nil {
