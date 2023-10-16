@@ -13,7 +13,7 @@ RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/screenshot cmd/server.go
 
 FROM chromedp/headless-shell:latest
 RUN apt-get update
-RUN apt-get install -y dumb-init wget
+RUN apt-get install -y dumb-init wget fonts-noto-color-emoji
 RUN wget http://ftp.uk.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb
 RUN apt-get install -y ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy cabextract
 RUN dpkg -i ttf-mscorefonts-installer_3.8.1_all.deb
