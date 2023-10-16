@@ -41,7 +41,7 @@ func Screenshot(o ScreenshotOptions) (b []byte, err error) {
 	if errors.Is(err, context.Canceled) {
 		return nil, errors.New("time out")
 	}
-	return b, nil
+	return b, err
 }
 
 func RawHtml(o NewTabOptions) (b string, err error) {
