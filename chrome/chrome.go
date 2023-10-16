@@ -83,10 +83,28 @@ func (c Chrome) Screenshot(parent context.Context, o ScreenshotOptions) (b []byt
 			return nil
 		}),
 		chromedp.Sleep(o.Delay),
+
+		chromedp.Evaluate("document.querySelector('.CookieConsent')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.ccc-notify__notify')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.cky-consent-container')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.gdpr-banner-container')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.fc-consent-root')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.cookie-consent-area')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.wt-cli-cookie-bar-container')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.ct-ultimate-gdpr-cookie-popup')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.optanon-alert-box-wrapper')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.country-popup-box')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.cookies-banner')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.cookie-window')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('.cookie-banner')?.remove()", nil),
 		chromedp.Evaluate("document.querySelector('.osano-cm-dialog')?.remove()", nil),
 		chromedp.Evaluate("document.querySelector('#onetrust-consent-sdk')?.remove()", nil),
 		chromedp.Evaluate("document.querySelector('#hs-eu-cookie-confirmation')?.remove()", nil),
 		chromedp.Evaluate("document.querySelector('#hubspot-messages-iframe-container')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('#bcc-outer')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('#iubenda-cs-banner')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('#cmplz-cookiebanner-container')?.remove()", nil),
+		chromedp.Evaluate("document.querySelector('div[class*=\"CookieBanner_banner\"]')?.remove()", nil),
 
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			if o.Full {
